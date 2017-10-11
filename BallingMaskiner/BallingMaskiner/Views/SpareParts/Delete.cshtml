@@ -1,0 +1,28 @@
+﻿@model BallingMaskiner.Models.SparePartViewModel
+@{
+    ViewBag.Title = "Delete";
+}
+<h2 class="page-header">Slet reservedel</h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @Html.ActionLink("Tilbage", "Details", "Machines", new { id = Model.MachineId, customerId = Model.CustomerId  }, new { @class = "btn btn-default btn-sm" })
+            @*<input type="submit" value="Delete" class="btn btn-danger btn-sm" />*@
+            <button type="submit" class="btn btn-default btn-sm deleteButtonPadding">
+                <i class="glyphicon glyphicon-trash delete"></i>
+            </button>
+        </div>
+    }
+</div>

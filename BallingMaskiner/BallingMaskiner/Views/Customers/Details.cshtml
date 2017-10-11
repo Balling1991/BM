@@ -1,0 +1,305 @@
+﻿@using BallingMaskiner.Models
+@model Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="page-header">Kunde</h2>
+
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-md-4" style="padding-left: 0;">
+        <div class="well well-sm" style="vertical-align: middle;">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Cvr)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Cvr)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.City)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.City)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PostalCode)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PostalCode)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Homepage)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Homepage)
+                </dd>
+            </dl>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <p style="float: left">
+                    @Html.ActionLink("Tilbage", "Index", null, new {@class = "btn btn-default btn-sm"})
+                    @*@Html.ActionLink("Rediger", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning btn-sm" })*@
+                    <a class="btn btn-default btn-sm deleteButtonPadding" href="@Url.Action("Edit", new {id = Model.Id})">
+                        <i class="glyphicon glyphicon-pencil"></i><span> Rediger</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <br class="visible-sm"/>
+
+    <div class="col-md-8" style="padding-left:0; padding-right:0;">
+            <ul class="nav nav-tabs" id="product-table">
+                <li class="active"><a data-toggle="tab" href="#1">Kontakter</a></li>
+                <li><a data-toggle="tab" href="#2">Maskiner</a></li>
+                <li><a data-toggle="tab" href="#3">Tilbud</a></li>
+                <li><a data-toggle="tab" href="#4">Besøg</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="1">
+                    <table class="table table-hover">
+                        <thead class="theadSideBorder">
+                            <tr>
+                                <th class="thBorder">Navn</th>
+                                <th>Telefonnummer</th>
+                                <th>Email</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="well well-sm">
+                            @foreach (Contact contact in Model.Contacts)
+                            {
+                                <tr>
+                                    <td>
+                                        @contact.Name
+                                    </td>
+                                    <td>
+                                        @contact.PhoneNumber
+                                    </td>
+                                    <td>
+                                        @contact.Email
+                                    </td>
+                                    <td class="text-right">
+                                        @*@Html.ActionLink("Rediger", "Edit", "Contacts", new { id = contact.Id, customerId = Model.Id }, new { @class = "btn btn-warning btn-sm" })*@
+                                        <a class="btn btn-default btn-sm deleteButtonPadding" href="@Url.Action("Edit", "Contacts" , new { id = contact.Id, customerId = Model.Id })">
+                                            <i class="glyphicon glyphicon-pencil"></i><span> Rediger</span>
+                                        </a>
+                                        @*@Html.ActionLink("Slet", "Delete", "Contacts", new { id = contact.Id, customerId = Model.Id }, new { @class = "btn btn-danger btn-sm" })*@
+                                        <a class="btn btn-default btn-sm deleteButtonPadding" href="@Url.Action("Delete", "Contacts" , new { id = contact.Id, customerId = Model.Id })">
+                                            <i class="glyphicon glyphicon-trash delete"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @*@Html.ActionLink("Opret ny kontakt", "Create", "Contacts", new { id = Model.Id }, new { @class = "btn btn-success btn-sm" })*@
+                    <a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Create", "Contacts", new { id = Model.Id })">
+                        <i style="color:green" class="glyphicon glyphicon-plus"></i><span> Opret kontakt</span>
+                    </a>
+                </div>
+                <div class="tab-pane" id="2">
+                    <table class="table table-hover">
+                        <thead class="theadSideBorder">
+                            <tr>
+                                <th>Serienummer</th>
+                                <th>Navn</th>
+                                @*<th>Reservedele</th>*@
+                                <th>Solgt</th>
+                                <th>Oprettet</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="well well-sm">
+                            @foreach (Machine machine in Model.Machines)
+                            {
+                                <tr>
+                                    <td>
+                                        @machine.SerialNumber
+                                    </td>
+                                    <td>
+                                        @machine.Name
+                                    </td>
+                                    @*<td>
+                                        @foreach (var sparepart in machine.SpareParts)
+                                        {
+                                            @sparepart.Name <br />
+                                        }
+                                    </td>*@
+
+                                    <td>
+                                        @if (@machine.IsSold == true)
+                                        {
+                                            <span>Ja</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Nej</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @machine.DateCreated
+                                    </td>
+                                    <td class="text-right">
+                                        @Html.ActionLink("Detaljer", "Details", "Machines", new { id = machine.Id, customerId = Model.Id }, new { @class = "btn btn-default btn-sm" })
+                                        @*@Html.ActionLink("Slet", "Delete", "Machines", new { id = machine.Id, customerId = Model.Id }, new { @class = "btn btn-danger btn-sm" })*@
+                                        <a class="btn btn-default btn-sm deleteButtonPadding" href="@Url.Action("Delete", "Machines" , new { id = machine.Id, customerId = Model.Id })">
+                                            <i class="glyphicon glyphicon-trash delete"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @*@Html.ActionLink("Opret ny maskine", "Create", "Machines", new { id = Model.Id }, new { @class = "btn btn-success btn-sm" })*@
+                    <a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Create", "Machines", new { id = Model.Id })">
+                        <i style="color:green" class="glyphicon glyphicon-plus"></i><span> Opret maskine</span>
+                    </a>
+                </div>
+                <div class="tab-pane" id="3">
+                    <table class="table table-hover">
+                        <thead class="theadSideBorder">
+                        <tr>
+                            <th>Navn</th>
+                            <th>Kategori</th>
+                            <th>Skabelon</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody class="well well-sm">
+                        @foreach (Quotation quotation in Model.Quotations)
+                        {
+                            <tr>
+                                <td>
+                                    @quotation.Name
+                                </td>
+                                <td>
+                                    @quotation.Category
+                                </td>
+                                <td>
+                                    @if (quotation.IsTemplate)
+                                    {
+                                        <input type="checkbox" name="skabelon" checked disabled="disabled"/>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" name="skabelon" disabled="disabled" />
+                                    }
+                                </td>
+                                <td class="text-right">
+                                    @*@Html.ActionLink("Download", "Download", "Quotations", new { id = quotation.Id }, new { @class = "btn btn-success btn-sm" })*@
+                                    <a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Download", "Quotations", new { id = quotation.Id })">
+                                        <i style="color:green" class="glyphicon glyphicon-download-alt"></i><span> Download</span>
+                                    </a>
+                                    @*@Html.ActionLink("Rediger", "Edit", "Contacts", new { id = contact.Id, customerId = Model.Id }, new { @class = "btn btn-warning btn-sm" })*@
+                                    <a class="btn btn-default btn-sm deleteButtonPadding" href="@Url.Action("Edit", "Quotations" , new { id = quotation.Id, customerId = Model.Id })">
+                                        <i class="glyphicon glyphicon-pencil"></i><span> Rediger</span>
+                                    </a>
+                                    @*@Html.ActionLink("Slet", "Delete", "Quotations", new { id = quotation.Id, customerId = Model.Id }, new { @class = "btn btn-danger btn-sm" })*@
+                                    <a class="btn btn-default btn-sm deleteButtonPadding" href="@Url.Action("Delete", "Quotations" , new { id = quotation.Id, customerId = Model.Id })">
+                                        <i class="glyphicon glyphicon-trash delete"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                    @*@Html.ActionLink("Opret nyt tilbud", "Create", "Quotations", new { id = Model.Id }, new { @class = "btn btn-success btn-sm" })*@
+                    <a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Create", "Quotations", new { id = Model.Id })">
+                        <i style="color:green" class="glyphicon glyphicon-plus"></i><span> Opret tilbud</span>
+                    </a>
+                </div>
+                <div class="tab-pane" id="4">
+                    <table class="table table-hover">
+                        <thead class="theadSideBorder">
+                            <tr>
+                                <th>Kontaktperson</th>
+                                <th>Kommentar</th>
+                                <th>Dato</th>
+                                <th>Næste aftale</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="well well-sm">
+                            @foreach (Visits visit in Model.Visits)
+                            {
+                                <tr>
+                                    <td style="width: 20%">
+                                        @visit.ContactPerson
+                                    </td>
+                                    <td style="width: 30%">
+                                        @visit.Comment
+                                    </td>
+                                    <td style="width: 15%">
+                                        @visit.Date
+                                    </td>
+                                    <td style="width: 15%">
+                                        @visit.NextAppointment
+                                    </td>
+                                    <td class="text-right" style="width: 20%">
+                                        @*@Html.ActionLink("Rediger", "Edit", "Contacts", new { id = contact.Id, customerId = Model.Id }, new { @class = "btn btn-warning btn-sm" })*@
+                                        <a class="btn btn-default btn-sm deleteButtonPadding" href="@Url.Action("Edit", "Visits" , new { id = visit.Id, customerId = Model.Id })">
+                                            <i class="glyphicon glyphicon-pencil"></i><span> Rediger</span>
+                                        </a>
+                                        @*@Html.ActionLink("Slet", "Delete", "Quotations", new { id = quotation.Id, customerId = Model.Id }, new { @class = "btn btn-danger btn-sm" })*@
+                                        <a class="btn btn-default btn-sm deleteButtonPadding" href="@Url.Action("Delete", "Visits" , new { id = visit.Id, customerId = Model.Id })">
+                                            <i class="glyphicon glyphicon-trash delete"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @*@Html.ActionLink("Opret nyt tilbud", "Create", "Quotations", new { id = Model.Id }, new { @class = "btn btn-success btn-sm" })*@
+                    <a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Create", "Visits", new { id = Model.Id })">
+                        <i style="color:green" class="glyphicon glyphicon-plus"></i><span> Opret besøg</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

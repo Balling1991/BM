@@ -1,0 +1,281 @@
+﻿@using BallingMaskiner.Models
+@model Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="page-header">Kunde</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="infoBox">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Address)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.City)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.City)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PostalCode)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PostalCode)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PhoneNumber)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Homepage)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Homepage)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <ul class="nav nav-tabs" id="product-table">
+                <li class="active"><a data-toggle="tab" href="#1">Maskiner</a></li>
+                <li><a data-toggle="tab" href="#2">Kontakter</a></li>
+                <li><a data-toggle="tab" href="#3">Tilbud</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="1">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Serienummer</th>
+                                <th>Navn</th>
+                                <th>Reservedele</th>
+                                <th>Solgt</th>
+                                <th>Oprettet</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Machine machine in Model.Machines)
+                            {
+                                <tr>
+                                    <td>
+                                        @machine.SerialNumber
+                                    </td>
+                                    <td>
+                                        @machine.Name
+                                    </td>
+                                    <td>
+                                        @machine.SpareParts
+                                    </td>
+                                    <td>
+                                        @machine.IsSold
+                                    </td>
+                                    <td>
+                                        @machine.DateCreated
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Detaljer", "Details", "Machines", new { id = machine.Id }, new { @class = "btn btn-default btn-sm" })
+                                        @Html.ActionLink("Slet", "Delete", "Machines", new { id = machine.Id }, new { @class = "btn btn-danger btn-sm" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table> 
+                    @Html.ActionLink("Opret ny maskine", "Create", "Machines", new { id = Model.Id }, new { @class = "btn btn-success btn-sm" })
+                </div>
+                <div class="tab-pane" id="2">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Navn</th>
+                                <th>Telefonnummer</th>
+                                <th>Email</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Contact contact in Model.Contacts)
+                            {
+                                <tr>
+                                    <td>
+                                        @contact.Name
+                                    </td>
+                                    <td>
+                                        @contact.PhoneNumber
+                                    </td>
+                                    <td>
+                                        @contact.Email
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Rediger", "Edit", "Contacts", new { id = contact.Id }, new { @class = "btn btn-warning btn-sm" })
+                                        @Html.ActionLink("Slet", "Delete", "Contacts", new { id = contact.Id }, new { @class = "btn btn-danger btn-sm" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @Html.ActionLink("Opret ny kontakt", "Create", "Contacts", new { id = Model.Id }, new { @class = "btn btn-success btn-sm" })
+                </div>
+                <div class="tab-pane" id="3">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Navn</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Quotation quotation in Model.Quotations)
+                            {
+                                <tr>
+                                    <td>
+                                        @quotation.Name
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Slet", "Delete", "Quotations", new { id = quotation.Id }, new { @class = "btn btn-danger btn-sm" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @Html.ActionLink("Opret nyt tilbud", "Create", "Quotations", new { id = Model.Id }, new { @class = "btn btn-success btn-sm" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<div id="home" class="tab-pane fade in active">
+        <h3>@Html.DisplayNameFor(model => model.Machines)</h3>
+        <p>
+            @foreach (Machine machine in Model.Machines)
+            {
+                machine.Name += " ";
+
+                @machine.Name
+
+                @Html.ActionLink("Detaljer", "Details", "Machines", new { id = machine.Id }, new { @class = "btn btn-default btn-sm" })
+                <br />
+            }
+        </p>
+    </div>
+    <div id="menu1" class="tab-pane fade">
+        <h3>@Html.DisplayNameFor(model => model.Contacts)</h3>
+        <p>
+            @foreach (Contact contact in Model.Contacts)
+            {
+                contact.Name += " ";
+
+                @contact.Name
+                <br />
+            }
+        </p>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+        <h3>@Html.DisplayNameFor(model => model.Quotations)</h3>
+        <p>
+            @foreach (Quotation quotation in Model.Quotations)
+            {
+                quotation.Name += " ";
+
+                @quotation.Name
+                <br />
+            }
+        </p>
+    </div>*@
+@*<dt>
+        @Html.DisplayNameFor(model => model.Contacts)
+    </dt>
+
+    <dd>
+        @foreach (Contact contact in Model.Contacts)
+        {
+            contact.Name += " ";
+
+            @contact.Name
+            <br />
+        }
+
+        @Html.ActionLink("Opret Ny Kontakt", "Create", "Contacts", new { id = Model.Id }, new { @class = "btn btn-success btn-sm" })
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Machines)
+    </dt>
+
+    <dd>
+        @foreach (Machine machine in Model.Machines)
+        {
+            machine.Name += " ";
+
+            @machine.Name
+
+            @Html.ActionLink("Detaljer", "Details", "Machines", new { id = machine.Id }, new { @class = "btn btn-default btn-sm" })
+            <br />
+        }
+
+<<<<<<< HEAD
+        @Html.ActionLink("Opret Ny Maskine", "Create", "Machines", new { id = Model.Id }, new { @class = "btn btn-success btn-sm" })
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Quotations)
+    </dt>
+
+    <dd>
+        @foreach (Quotation quotation in Model.Quotations)
+        {
+            quotation.Name += " ";
+
+            @quotation.Name
+            <br />
+        }
+
+        @Html.ActionLink("Opret Nyt Tilbud", "Create", "Quotations", new { id = Model.Id }, new { @class = "btn btn-success btn-sm" })
+    </dd>*@
+=======
+                @quotation.Name
+
+                @Html.ActionLink("Download", "Download", "Quotations", new {id = quotation.Id}, new { @class = "btn btn-success btn-sm" })
+                <br />
+            }
+>>>>>>> master
+
+<p>
+    @Html.ActionLink("Tilbage", "Index", null, new { @class = "btn btn-default btn-sm" })
+    @Html.ActionLink("Rediger", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning btn-sm" })
+</p>

@@ -1,0 +1,42 @@
+﻿@model BallingMaskiner.Models.Contact
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="page-header">Detaljer</h2>
+
+<div>
+    <h4>Kontakt</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Tilbage", "Index", null, new { @class = "btn btn-default btn-sm" })
+    @Html.ActionLink("Rediger", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning btn-sm" })
+</p>

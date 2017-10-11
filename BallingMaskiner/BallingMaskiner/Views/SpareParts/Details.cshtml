@@ -1,0 +1,21 @@
+﻿@model BallingMaskiner.Models.SparePartViewModel
+@{
+    ViewBag.Title = "Details";
+}
+<h2 class="page-header">Detaljer</h2>
+<div>
+    <h4>Reservedel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Tilbage", "Details", "Machines", new { id = Model.MachineId, customerId = Model.CustomerId, machineId = Model.MachineId }, new { @class = "btn btn-default btn-sm" })
+    @Html.ActionLink("Rediger", "Edit", "SpareParts", new { id = Model.Id, customerId = Model.CustomerId, machineId = Model.MachineId }, new { @class = "btn btn-warning btn-sm" })
+</p>

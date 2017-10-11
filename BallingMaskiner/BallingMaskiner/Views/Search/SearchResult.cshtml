@@ -1,0 +1,54 @@
+﻿@using BallingMaskiner.Models
+@model SearchResultViewModel
+
+@if (!Model.AnyResult)
+{
+    <b>
+        Søgningen gav ingen resultater <br />
+
+        Prøv igen
+    </b>
+}
+else
+{
+    if (Model.MachineViewModels.Any())
+    {
+        @Html.Partial("SearchResultMachine", Model.MachineViewModels)
+    }
+
+    if (Model.ContactViewModels.Any())
+    {
+        @Html.Partial("SearchResultContact", Model.ContactViewModels)
+    }
+
+    if (Model.Customers.Any())
+    {
+        @Html.Partial("SearchResultCustomer", Model.Customers)
+    }
+
+    if (Model.ManualViewModels.Any())
+    {
+        @Html.Partial("SearchResultManual", Model.ManualViewModels)
+    }
+
+    if (Model.ProspectsViewModels.Any())
+    {
+        @Html.Partial("SearchResultProspect", Model.ProspectsViewModels)
+    }
+
+    if (Model.QuotationViewModels.Any())
+    {
+        @Html.Partial("SearchResultQuotation", Model.QuotationViewModels)
+    }
+
+    if (Model.SparePartViewModels.Any())
+    {
+        @Html.Partial("SearchResultSparePart", Model.SparePartViewModels)
+    }
+
+    if (Model.VisitsViewModels.Any())
+    {
+        @Html.Partial("SearchResultVisit", Model.VisitsViewModels)
+    }
+}
+

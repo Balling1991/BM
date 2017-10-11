@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BallingMaskiner", "BallingMaskiner\BallingMaskiner.csproj", "{36FBB960-71F2-426B-8F8C-801A888B86A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BallingMaskiner.Tests", "BallingMaskiner.Tests\BallingMaskiner.Tests.csproj", "{EDF2F779-5446-45C5-B48B-D82EE43F5393}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36FBB960-71F2-426B-8F8C-801A888B86A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36FBB960-71F2-426B-8F8C-801A888B86A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36FBB960-71F2-426B-8F8C-801A888B86A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36FBB960-71F2-426B-8F8C-801A888B86A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDF2F779-5446-45C5-B48B-D82EE43F5393}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDF2F779-5446-45C5-B48B-D82EE43F5393}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDF2F779-5446-45C5-B48B-D82EE43F5393}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDF2F779-5446-45C5-B48B-D82EE43F5393}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

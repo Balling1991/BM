@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BallingMaskiner.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2 class="page-header">Brugere</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Brugernavn
+        </th>
+        <th>
+            Rolle
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Roles.FirstOrDefault().RoleId)
+            </td>
+            <td>
+                @Html.ActionLink("Rediger", "Edit", new {Id = item.Id}, new {@class = "btn btn-warning btn-sm"})
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Opret ny", "Register", "Account", null, new { @class = "btn btn-success btn-sm" })
+</p>

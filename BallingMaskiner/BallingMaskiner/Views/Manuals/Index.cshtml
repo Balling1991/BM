@@ -1,0 +1,42 @@
+﻿@using BallingMaskiner.Models
+@model IEnumerable<BallingMaskiner.Models.Manual>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="page-header">Manualer</h2>
+
+<div class="tab-pane" id="3">
+    <table class="table table-condensed table-hover tableShadow">
+        <thead class="theadTopBorder theadSideBorder">
+            <tr class="tableHeaderHeight">
+                <th>
+                    Navn
+                </th>
+                <th>
+
+                </th>
+        </thead>
+        <tbody class="well well-sm">
+            @foreach (Manual item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="text-right">
+                        <a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Download", "Manuals", new {id = item.Id})">
+                            <i style="color: green" class="glyphicon glyphicon-download-alt"></i><span> Download</span>
+                        </a>
+                        <a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Delete", "Manuals", new {id = item.Id})">
+                            <i class="glyphicon glyphicon-trash delete"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Create", "Manuals")">
+        <i style="color:green" class="glyphicon glyphicon-plus"></i><span> Tilføj manual</span>
+    </a>
+</div>

@@ -1,0 +1,45 @@
+﻿@using BallingMaskiner.Models
+@model IEnumerable<BallingMaskiner.Models.Prospect>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="page-header">Prospekter</h2>
+
+<div class="tab-pane" id="3">
+    <table class="table table-condensed table-hover tableShadow">
+        <thead class="theadTopBorder theadSideBorder">
+            <tr class="tableHeaderHeight">
+                <th>
+                    Navn
+                </th>
+                <th>
+
+                </th>
+        </thead>
+        <tbody class="well well-sm">
+            @foreach (Prospect item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="text-right">
+                        @*@Html.ActionLink("Download", "Download", "Prospects", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })*@
+                        <a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Download", "Prospects", new {id = item.Id})">
+                            <i style="color: green" class="glyphicon glyphicon-download-alt"></i><span> Download</span>
+                        </a>
+                        @*@Html.ActionLink("Slet", "Delete", "Prospects", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })*@
+                        <a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Delete", "Prospects", new {id = item.Id})">
+                            <i class="glyphicon glyphicon-trash delete"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @*@Html.ActionLink("Tilføj nyt prospekt", "Create", "Prospects", new { @class = "btn btn-success btn-sm" })*@
+    <a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Create", "Prospects")">
+        <i style="color:green" class="glyphicon glyphicon-plus"></i><span> Tilføj prospekt</span>
+    </a>
+</div>

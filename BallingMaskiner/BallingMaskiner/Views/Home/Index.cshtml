@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1 class="text-center">Balling Maskiner ApS</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <h3 class="text-center">Excel Eksport</h3>
+        <br />
+        <div class="col-md-4">
+            @Html.ActionLink("Kunder", "Excel", "Excel", new { model = "customers" }, new { @class = "btn btn-default", @style = "width: 100%; height: 100px; font-size: 40px; vertical-align: middle; font-weight: bold" })
+        </div>
+        <div class="col-md-4">
+            @Html.ActionLink("Maskiner", "Excel", "Excel", new { model = "machines" }, new { @class = "btn btn-default", @style = "width: 100%; height: 100px; font-size: 40px; vertical-align: middle; font-weight: bold" })
+        </div>
+        <div class="col-md-4">
+            @Html.ActionLink("Kontakter", "Excel", "Excel", new { model = "contacts" }, new { @class = "btn btn-default", @style = "width: 100%; height: 100px; font-size: 40px; vertical-align: middle; font-weight: bold" })
+        </div>
+    </div>
+</div>

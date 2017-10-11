@@ -1,0 +1,52 @@
+﻿@using BallingMaskiner.Models
+@model List<MachineViewModel>
+
+<h2>Maskiner:</h2>
+
+<table class="table table-condensed table-hover tableShadow" style="table-layout: fixed; word-wrap: break-word;">
+    <thead class="theadTopBorder theadSideBorder">
+        <tr class="tableHeaderHeight">
+            <th width="16.6%">
+                Kunde
+            </th> 
+            <th width="16.6%">
+                Navn
+            </th>
+            <th width="16.6%">
+                Serienummer
+            </th>
+            <th width="16.6%">
+                Solgt
+            </th>
+            <th width="16.6%">
+                Oprettet
+            </th>
+            <th width="16.6%"></th>
+        </tr>
+    </thead>
+    <tbody class="well well-sm">
+        @foreach (MachineViewModel item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td> 
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerialNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsSold)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td class="text-center">
+                    @Html.ActionLink("Se kunde", "Details", "Customers", new { id = item.CustomerId }, new { @class = "btn btn-default btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

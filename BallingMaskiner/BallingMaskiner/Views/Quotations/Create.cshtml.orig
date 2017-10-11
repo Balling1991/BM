@@ -1,0 +1,112 @@
+<<<<<<< HEAD
+﻿@model BallingMaskiner.Models.QuotationViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<script>
+    function DisableButton(b) {
+        b.disabled = true;
+        b.value = 'Uploader...';
+        b.form.submit();
+    }
+</script>
+
+<h2>Opret nyt tilbud</h2>
+
+@using (Html.BeginForm("Create", "Quotations", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.CustomerId)
+    @Html.HiddenFor(x => x.CustomerName)
+    
+    <div class="form-horizontal">
+        <h4>Opret nyt tilbud for @Model.CustomerName</h4>
+        <hr/>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.File, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-4">
+                <input type="file" id="File" name="File" class="btn btn-default form-control"/>
+            </div>
+        </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Gem tilbud" class="btn btn-success btn-sm" onclick="DisableButton(this);" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Tilbage", "Details", "Customers", new { id = Model.CustomerId }, new { @class = "btn btn-default btn-sm" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+=======
+﻿@model BallingMaskiner.Models.QuotationViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Opret nyt tilbud</h2>
+
+@using (Html.BeginForm("Create", "Quotations", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.CustomerId)
+    @Html.HiddenFor(x => x.CustomerName)
+    
+    <div class="form-horizontal">
+        <h4>Opret nyt tilbud for @Model.CustomerName</h4>
+        <hr/>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.File, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-4">
+                <input type="file" id="File" name="File" class="btn btn-default form-control inputFile"/>
+            </div>
+        </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @*<input type="submit" value="Gem tilbud" class="btn btn-success btn-sm" />*@
+                <button type="submit" class="btn btn-default btn-sm deleteButtonPadding">
+                    <i style="color:green" class="glyphicon glyphicon-floppy-save"></i><span> Gem</span>
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Tilbage", "Details", "Customers", new { id = Model.CustomerId }, new { @class = "btn btn-default btn-sm" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+>>>>>>> master

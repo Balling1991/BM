@@ -1,0 +1,52 @@
+﻿@using BallingMaskiner.Models
+@model List<VisitsViewModel>
+
+<h2>Besøg:</h2>
+
+<table class="table table-condensed table-hover tableShadow" style="table-layout: fixed; word-wrap: break-word;">
+    <thead class="theadTopBorder theadSideBorder">
+    <tr class="tableHeaderHeight">
+        <th width="16.67%">
+            Kunde
+        </th>
+        <th width="16.67%">
+            Kontaktperson
+        </th>
+        <th width="16.67%">
+            Kommentar
+        </th>
+        <th width="16.67%">
+            Dato
+        </th>
+        <th width="16.67%">
+            Næste aftale
+        </th>
+        <th width="16.67%"></th>
+    </tr>
+    </thead>
+    <tbody class="well well-sm">
+        @foreach (VisitsViewModel item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactPerson)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NextAppointment)
+                </td>
+                <td class="text-center">
+                    @Html.ActionLink("Se kunde", "Details", "Customers", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

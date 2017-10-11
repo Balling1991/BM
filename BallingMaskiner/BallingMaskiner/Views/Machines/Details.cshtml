@@ -1,0 +1,118 @@
+﻿@model BallingMaskiner.Models.MachineViewModel
+@{
+    ViewBag.Title = "Details";
+}
+<h2 class="page-header">Detaljer for maskine</h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SerialNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSold)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsSold)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SpareParts)
+        </dt>
+        <dd>
+            <table class="table table-hover table-condensed halfWidth">
+                <thead class="theadSideBorder theadTopBorder">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="well well-sm">
+                    @foreach (var sparepart in Model.SpareParts)
+            {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => sparepart.Name)
+                            </td>
+                            <td class="text-right">
+                                <a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Download", "SpareParts", new { id = sparepart.Id })">
+                                    <i style="color:green" class="glyphicon glyphicon-download-alt"></i><span> Download</span>
+                                </a>
+
+                                @*<a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Edit", "SpareParts", new { id = sparepart.Id, customerId = Model.CustomerId, machineId = Model.Id })">
+                                    <i class="glyphicon glyphicon-pencil"></i><span> Rediger</span>
+                                </a>*@
+
+                                <a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Delete", "SpareParts", new { id = sparepart.Id, customerId = Model.CustomerId, machineId = Model.Id })">
+                                    <i class="glyphicon glyphicon-trash delete"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Create", "SpareParts", new { id = Model.Id, customerId = Model.CustomerId })">
+                <i style="color:green" class="glyphicon glyphicon-plus"></i><span> Tilføj reservedel</span>
+            </a>
+            <br />
+            <br />
+        <dt>
+            @Html.DisplayNameFor(model => model.Services)
+        </dt>
+        <dd>
+            <table class="table table-hover table-condensed halfWidth">
+                <thead class="theadSideBorder theadTopBorder">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="well well-sm">
+                    @foreach (var service in Model.Services)
+            {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => service.Name)
+                            </td>
+                            <td class="text-right">
+                                <a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Download", "Services", new { id = service.Id })">
+                                    <i style="color:green" class="glyphicon glyphicon-download-alt"></i><span> Download</span>
+                                </a>
+
+                                @*<a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Edit", "Services", new { id = service.Id, customerId = Model.CustomerId, machineId = Model.Id })">
+                                    <i class="glyphicon glyphicon-pencil"></i><span> Rediger</span>
+                                </a>*@
+
+                                <a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Delete", "Services", new { id = service.Id, customerId = Model.CustomerId, machineId = Model.Id })">
+                                    <i class="glyphicon glyphicon-trash delete"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Create", "Services", new { id = Model.Id, customerId = Model.CustomerId })">
+                <i style="color:green" class="glyphicon glyphicon-plus"></i><span> Tilføj servicedokument</span>
+            </a>
+        </dd>
+    </dl>
+</div>
+<br />
+<p>
+    @Html.ActionLink("Tilbage", "Details", "Customers", new { id = Model.CustomerId }, new { @class = "btn btn-default btn-sm" })
+    <a class="btn btn-default btn-sm deleteButtonPadding" style="vertical-align: middle;" href="@Url.Action("Edit", "Machines", new { id = Model.Id, customerId = Model.CustomerId })">
+        <i class="glyphicon glyphicon-pencil"></i><span> Rediger</span>
+    </a>
+</p>

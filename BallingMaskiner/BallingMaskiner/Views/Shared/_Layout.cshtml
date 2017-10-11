@@ -1,0 +1,59 @@
+﻿@using BallingMaskiner.Models
+@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/Content/Images/TransparentIconBallingMaskiner.ico" />
+    <title>Balling Maskiner ApS</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href='@Url.Action("Index", "Home", new { @class = "navbar-brand" })'>
+                    <img style="padding-top:5px; padding-bottom:5px;" class="navbar-brand" src='@Url.Content("~/Content/Images/logoforheader.png")' />
+                    <span class="navbar-brand" style="color:#333">Balling Maskiner ApS</span>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav menuItems">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Kunder", "Index", "Customers")</li>
+                        <li>@Html.ActionLink("Prospekter", "Index", "Prospects")</li>
+                        <li>@Html.ActionLink("Manualer", "Index", "Manuals")</li>
+                        <li>@Html.ActionLink("Tilbud", "Index", "QuotationsTemplate")</li>
+                        <li>
+                            <a href="@Url.Action("Index", "Search")">
+                                <i style="font-size:12px;" class="glyphicon glyphicon-search"></i><span> Søgning</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer style="float:left">
+            <p>&copy; @DateTime.Now.Year - Balling Maskiner ApS</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

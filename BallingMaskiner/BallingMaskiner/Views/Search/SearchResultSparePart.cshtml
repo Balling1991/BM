@@ -1,0 +1,46 @@
+﻿@using BallingMaskiner.Models
+@model List<SparePartViewModel>
+
+<h2>Reservedele:</h2>
+
+<table class="table table-condensed table-hover tableShadow" style="table-layout: fixed; word-wrap: break-word;">
+    <thead class="theadTopBorder theadSideBorder">
+    <tr class="tableHeaderHeight">
+        <th width="20%">
+            Kunde
+        </th> 
+        <th width="20%">
+            Maskine
+        </th> 
+        <th width="20%">
+            Navn
+        </th>
+        <th width="20%">
+            Filnavn
+        </th>
+        <th width="20%"></th>
+    </tr>
+    </thead>
+    <tbody class="well well-sm">
+        @foreach (SparePartViewModel item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MachineName)
+                </td> 
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td> 
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FileName)
+                </td>
+                <td class="text-center">
+                    @Html.ActionLink("Se kunde", "Details", "Customers", new { id = item.CustomerId }, new { @class = "btn btn-default btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

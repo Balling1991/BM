@@ -1,0 +1,51 @@
+﻿@model BallingMaskiner.Models.MachineViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 class="page-header">Slet maskine</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SerialNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSold)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSold)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(x => x.CustomerId)
+
+        <div class="form-actions no-color">
+            @Html.ActionLink("Tilbage", "Details", "Customers", new { id = Model.CustomerId }, new { @class = "btn btn-default btn-sm" })
+            @*<input type="submit" value="Slet" class="btn btn-danger btn-sm" />*@
+            <button type="submit" class="btn btn-default btn-sm deleteButtonPadding">
+                <i class="glyphicon glyphicon-trash delete"></i>
+            </button>
+        </div>
+    }
+</div>

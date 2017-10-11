@@ -1,0 +1,70 @@
+﻿@using BallingMaskiner.Models
+@model List<CustomerViewModel>
+
+<h2>Kunder:</h2>
+
+<table class="table table-condensed table-hover tableShadow" style="table-layout: fixed; word-wrap: break-word;">
+    <thead class="theadTopBorder theadSideBorder">
+        <tr class="tableHeaderHeight">
+            <th width="11.1%">
+                CVR
+            </th>
+            <th width="11.1%">
+                Navn
+            </th>
+            <th width="11.1%">
+                Addresse
+            </th>
+            <th width="11.1%">
+                By
+            </th>
+            <th width="11.1%">
+                Post Nr.
+            </th>
+            <th width="11.1%">
+                Tlf
+            </th>
+            <th width="11.1%">
+                Email
+            </th>
+            <th width="11.1%">
+                Hjemmeside
+            </th>
+            <th width="11.1%"></th>
+        </tr>
+    </thead>
+    <tbody class="well well-sm">
+        @foreach (CustomerViewModel item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cvr)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostalCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Homepage)
+                </td>
+                <td class="text-center">
+                    @Html.ActionLink("Se kunde", "Details", "Customers", new { id = item.Id }, new { @class = "btn btn-default btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
